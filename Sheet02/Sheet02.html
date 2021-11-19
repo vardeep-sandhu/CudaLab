@@ -14887,10 +14887,16 @@ Epoch 20 Iter 141: loss 0.35543. : 100%|██████| 144/144 [00:12&lt;00
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[122]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Saving the model for assignmnet 3</span>
+
+<span class="n">save_path</span> <span class="o">=</span> <span class="s2">&quot;best_model.pth&quot;</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">({</span>
+    <span class="s1">&#39;model_state_dict&#39;</span> <span class="p">:</span> <span class="n">best_model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
+    <span class="s1">&#39;optimizer_state_dict&#39;</span><span class="p">:</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()</span>
+<span class="p">},</span> <span class="n">save_path</span><span class="p">)</span>
 </pre></div>
 
      </div>
