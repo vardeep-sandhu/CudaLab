@@ -10,31 +10,30 @@ from torchvision import datasets, models, transforms
 
 def train_epoch(model, train_loader, optimizer, criterion, epoch, device):
     """ Training a model for one epoch """
-    
     loss_list = []
     progress_bar = tqdm(enumerate(train_loader), total=len(train_loader))
     for i, (images, labels) in progress_bar:
         images = images.to(device)
         labels = labels.to(device)
-        
+            
         # Clear gradients w.r.t. parameters
         optimizer.zero_grad()
-         
+
         # Forward pass to get output/logits
         outputs = model(images)
-         
+
         # Calculate Loss: softmax --> cross entropy loss
         loss = criterion(outputs, labels)
         loss_list.append(loss.item())
-         
+
         # Getting gradients w.r.t. parameters
         loss.backward()
-         
+
         # Updating parameters
         optimizer.step()
-        
+
         progress_bar.set_description(f"Epoch {epoch+1} Iter {i+1}: loss {loss.item():.5f}. ")
-        
+
     mean_loss = np.mean(loss_list)
     return mean_loss, loss_list
 
@@ -93,6 +92,7 @@ def train_model(model, optimizer, scheduler, criterion, train_loader, valid_load
                 model=model, train_loader=train_loader, optimizer=optimizer,
                 criterion=criterion, epoch=epoch, device=device
             )
+
         scheduler.step()
         train_loss.append(mean_loss)
         loss_iters = loss_iters + cur_loss_iters
